@@ -4,7 +4,7 @@ import { TJsonArray, TJsonMap, TJsonValue } from 'typeon'
 import FoxrError from './Error'
 import { createParseStream, parse, stringify } from './json-protocol'
 
-const CONNECTION_TIMEOUT = 10000
+const CONNECTION_TIMEOUT = 5*60*1000 // 5 min
 
 export type TMarionetteError = {
   error: string,

@@ -102,11 +102,11 @@ class Marionette extends EventEmitter {
 
   async send (name: string, params: TJsonMap = {}, key?: string) {
     return new Promise<TJsonValue>((resolve, reject) => {
-      const data = stringify([0, this.globalId, name, params])
+      const globalId = this.globalId++;
+      const data = stringify([0, globalId, name, params])
 
       this.socket.write(data, 'utf8', () => {
-        this.queue.push({ id: this.globalId, key, resolve, reject })
-        this.globalId += 1
+        this.queue.push({ id: globalId, key, resolve, reject })
       })
     })
   }
